@@ -12,11 +12,11 @@ def draw_axes():
     glVertex2f(0, 10)
     glEnd()
 
-def draw_points(x, y):
+def draw_points(x,y):
     glColor3f(1.0, 0.0, 0.0)  # Red color for points
-    glPointSize(2)
+    glPointSize(5)
     glBegin(GL_POINTS)
-    glVertex2f(x, y)
+    glVertex2f(x, y)  # (5, 4)
     glEnd()
 
 def display():
@@ -24,22 +24,25 @@ def display():
     glLoadIdentity()
     
     draw_axes()
-    # Display a line starting from (1, 1) to (6,6)
-    x1 = 1
-    y1 = 1
-    x2 = 7
-    y2 = 7
-    x = x1
-    y = y1
-    m = (y2-y1)/(x2-x1)
-    while x <= x2 :
-        draw_points(x, y)
-        if m <= 1:
-            x = x + 1/100
-            y = y + m/100
-        else:
-            y = y + 1/100
-            x = x + (1/m)/100
+    # Bressenham line
+
+    r=6
+    x=0 
+    y=r
+    d=3-(2*r)
+
+    while(x<=y):
+         draw_points(x,y)
+         x=x+1/100
+         if d<0:
+             d=d+(4*x)+6/100
+         else:
+             d=d+4*(x-y)+10/100
+             y=y-1/100   
+
+             
+
+
     
     glFlush()
     glutSwapBuffers()

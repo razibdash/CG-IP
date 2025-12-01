@@ -33,19 +33,19 @@ def display():
     draw_axes()
     
     r = 6
-    
     x = 0
     y = r
     d = 3 - (2*r)
     
     while x <= y:
         draw_points(x, y)
+        x = x + 1/100
         if d < 0:
             d = d + (4*x) + 6/100
         else:
             d = d + 4*(x - y) + 10/100
             y = y - 1/100
-        x = x + 1/100
+      
     
     glFlush()
     glutSwapBuffers()
