@@ -17,6 +17,14 @@ def draw_points(x,y):
     glPointSize(5)
     glBegin(GL_POINTS)
     glVertex2f(x, y)  # (5, 4)
+    glVertex2f(-x, y)  # (5, 4)
+    glVertex2f(x, -y)  # (5, 4)
+    glVertex2f(-x, -y)  # (5, 4)
+    glVertex2f(y,x)  # (5, 4)
+    glVertex2f(-y,x)  # (5, 4)
+    glVertex2f(y,-x)  # (5, 4)
+    glVertex2f(-y,-x)  # (5, 4)
+      
     glEnd()
 
 def display():
@@ -24,26 +32,23 @@ def display():
     glLoadIdentity()
     
     draw_axes()
-    # Bressenham line
-
+    
     r=6
-    x=0 
+    x=0
     y=r
     d=3-(2*r)
 
-    while(x<=y):
+    while x<=y:
          draw_points(x,y)
-         x=x+1/100
+
          if d<0:
-             d=d+(4*x)+6/100
+            d=d+(4*x)+6/100
          else:
-             d=d+4*(x-y)+10/100
-             y=y-1/100   
+            y=y-1/100
+            d=d+4*(x-y)+10/100
+         x=x+1/100  
+  
 
-             
-
-
-    
     glFlush()
     glutSwapBuffers()
 
